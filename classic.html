@@ -1845,11 +1845,11 @@ async function wkAddExercise(){
 document.documentElement.dir='ltr';document.documentElement.lang='en';
 const s=document.createElement('style');s.textContent=`html,body{background:transparent!important}body::before{display:none!important}.bottom-nav,.sidebar,a[href="index.html"]{display:none!important}
 :root{--surface:#17171b;--surface-2:#202026;--surface-3:#2a2a31;--border:#ffffff12;--border-soft:#ffffff0c;--accent:#C9A668;--accent-2:#e6c88e;--radius-m:26px}
-.card{backdrop-filter:none!important;background:#17171b!important;border-radius:26px!important}.main{padding:calc(env(safe-area-inset-top,0px) + 14px) 16px 130px!important;margin:0 auto!important;max-width:520px!important}`;
+.card{backdrop-filter:none!important;background:#17171b!important;border-radius:26px!important}.main{padding:calc(env(safe-area-inset-top,0px) + 14px) 16px 130px!important;margin:0 auto!important;max-width:none!important}`;
 document.head.appendChild(s);addEventListener('load',()=>showPage(pg));
-let x=0,y=0,o={capture:true,passive:true};
-addEventListener('touchstart',e=>{x=e.touches[0].clientX;y=e.touches[0].clientY;e.stopImmediatePropagation()},o);
+let x=0,y=0,ig=0,o={capture:true,passive:true};const hs=el=>{for(;el&&el!==document.body;el=el.parentElement){const v=getComputedStyle(el).overflowX;if((v=='auto'||v=='scroll')&&el.scrollWidth>el.clientWidth+2)return true}return false};
+addEventListener('touchstart',e=>{x=e.touches[0].clientX;y=e.touches[0].clientY;ig=hs(e.target)||!!e.target.closest('input,select,textarea');e.stopImmediatePropagation()},o);
 addEventListener('touchmove',e=>e.stopImmediatePropagation(),o);
-addEventListener('touchend',e=>{parent.postMessage({sw:1,dx:e.changedTouches[0].clientX-x,dy:e.changedTouches[0].clientY-y},'*');e.stopImmediatePropagation()},o)})();
+addEventListener('touchend',e=>{if(!ig)parent.postMessage({sw:1,dx:e.changedTouches[0].clientX-x,dy:e.changedTouches[0].clientY-y},'*');e.stopImmediatePropagation()},o)})();
 </script></body>
 </html>
