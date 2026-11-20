@@ -47,11 +47,13 @@ h3{font-size:15px;margin:16px 4px 10px}.row{display:flex;align-items:center;gap:
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .pg{animation:pgin .5s var(--e)}@keyframes pgin{from{opacity:0;transform:translateX(var(--dx,30px))}}
 .sheet{position:static;transform:none;max-height:none;overflow:visible;background:none;padding:0;border-radius:0;max-width:none}.grip{display:none}
-#fab{margin-top:6px}.fr{position:fixed;top:0;bottom:0;left:50%;width:100%;max-width:var(--w);transform:translateX(-50%);border:0;background:transparent;z-index:3}
+#fab{margin-top:6px}.fr{position:fixed;top:0;bottom:0;left:0;right:0;margin:0 auto;width:100%;height:100%;max-width:var(--w);border:0;background:transparent;z-index:3;color-scheme:dark}
 .nv{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 16px);transform:translateX(-50%);display:flex;gap:4px;padding:7px;border-radius:99px;background:#17171bd9;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid #ffffff1a;box-shadow:0 14px 40px #000a;z-index:9}
 .nv button{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:74px;padding:8px 6px;border-radius:99px;font-size:11px;color:var(--dim);transition:all .4s var(--e)}
 .nv i{font-style:normal;font-size:19px;transition:transform .4s var(--e)}.nv button.on{background:linear-gradient(145deg,var(--gold2),var(--gold));color:#1c1408;font-weight:700}.nv button.on i{transform:translateY(-2px) scale(1.15)}
 @media(min-width:760px){:root{--w:560px}html{background:#0b0b0c}}.nv{width:min(92vw,420px)}.nv button{flex:1;min-width:0}
+select.in{appearance:none;-webkit-appearance:none}.in option{background:#17171b}.chip.on{background:var(--gold);color:#1c1408;font-weight:700}
+.over #zl{color:#e0795f;animation:shk .5s}.over #zb{background:#e0795f!important}@keyframes shk{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}#zl{display:inline-block;transition:color .3s}.pop{animation:pop .45s var(--e)}@keyframes pop{50%{transform:scale(1.04)}}
 </style></head><body>
 <section id="pg-home" class="pg"><div class="top up"><div><h1 id="hi">Hello</h1><small id="dt"></small></div><button class="ib" id="mn" aria-label="Menu">☰</button></div>
 <div class="wk up" id="wk" style="animation-delay:.08s"></div>
@@ -61,8 +63,9 @@ h3{font-size:15px;margin:16px 4px 10px}.row{display:flex;align-items:center;gap:
 <h3 class="up" style="animation-delay:.3s">Meals</h3><div id="list"></div>
 <button class="go" id="fab">＋ Log food</button></section>
 <div class="shade" id="sh"></div>
-<section id="pg-cal" class="pg" hidden><div class="top"><div><h1>Calories</h1><small>Search Egyptian &amp; global products</small></div></div><div class="sheet" id="sheet">
-<div class="tabs"><button class="tb on" data-t="s">Search products</button><button class="tb" data-t="c">Save / custom</button></div>
+<section id="pg-cal" class="pg" hidden><div class="top"><div><h1>Calories</h1><small>Search Egyptian &amp; global products</small></div></div><div class="card" id="zcard"><div style="display:flex;justify-content:space-between;align-items:flex-end;gap:8px"><div><small id="zt" style="color:var(--dim)">kcal left after this meal</small><div style="font-size:36px;font-weight:800;line-height:1.1" id="zl">0</div></div><small id="zm" style="color:var(--gold2);text-align:right"></small></div><div class="bar" style="margin:10px 0 12px;height:9px"><i id="zb" style="background:linear-gradient(90deg,var(--gold),var(--gold2))"></i></div><div class="mac" style="margin:0"><div class="m" style="background:var(--card2)"><small>Protein</small><b id="zpv">0g</b><div class="bar"><i id="zp" style="background:var(--p)"></i></div></div><div class="m" style="background:var(--card2)"><small>Carbs</small><b id="zcv">0g</b><div class="bar"><i id="zc" style="background:var(--c)"></i></div></div><div class="m" style="background:var(--card2)"><small>Fat</small><b id="zfv">0g</b><div class="bar"><i id="zf" style="background:var(--f)"></i></div></div></div></div><div class="sheet" id="sheet">
+<div class="tabs"><button class="tb on" data-t="k">Calculator</button><button class="tb" data-t="s">Search</button><button class="tb" data-t="c">Custom</button></div>
+<div id="pk"><div class="g2"><select class="in" id="kcat"></select><select class="in" id="kfood"><option value="">Food</option></select></div><div class="chips" id="kst" style="flex-wrap:wrap"></div><div class="chips"><input class="in" id="kw" type="number" inputmode="decimal" placeholder="Weight" style="width:110px;padding:9px 12px"><span style="align-self:center;color:var(--dim)">g</span><button class="chip" data-w="50">50</button><button class="chip" data-w="100">100</button><button class="chip" data-w="150">150</button><button class="chip" data-w="200">200</button></div><div class="pv"><div><b id="x1">0</b><small>kcal</small></div><div><b id="x2">0</b><small>protein</small></div><div><b id="x3">0</b><small>carbs</small></div><div><b id="x4">0</b><small>fat</small></div></div><button class="go" id="kadd" disabled>Add to meal</button><div class="src">Source: <a href="https://fdc.nal.usda.gov" target="_blank">USDA FoodData Central</a> · cooked values are approximate</div></div>
 <div id="ps"><input class="in" id="q" placeholder="Search Egyptian &amp; global products (e.g. Juhayna)" autocomplete="off"><div id="rs"></div>
 <div class="src">Sources: <a href="https://world.openfoodfacts.org" target="_blank">Open Food Facts</a> · <a href="https://fdc.nal.usda.gov" target="_blank">USDA FoodData Central</a> · values may be approximate</div></div>
 <div id="pd" hidden><b id="pn" style="font-size:16px"></b><small id="pb" style="display:block;color:var(--dim)"></small>
@@ -85,6 +88,86 @@ const rec=k=>get('calories_day_'+k,{entries:[],dietLabel:''}),r1=n=>Math.round(n
 let sel=dk(new Date()),S=get('settings_calories',{dietLabel:'',calorieGoal:0,macros:{protein:false,carbs:false,fat:false}}),meal=[],R=[],pick=null,seq=0,tm;
 const FOODS='Chicken breast, raw|110|23.1|0|1.2;Chicken breast, grilled|165|31|0|3.6;Chicken breast, boiled|150|26.5|0|3.6;Chicken breast, fried|219|24.7|1.3|12.4;Chicken thigh, grilled|209|24.9|0|12.4;Beef lean, raw|143|21.4|0|5.9;Beef lean, grilled|215|26.1|0|11.8;Ground beef, raw|254|17.2|0|20;Tuna in water (canned)|116|25.5|0|0.8;Tuna in oil (canned)|198|27.5|0|9.2;Salmon, grilled|206|27.4|0|9.9;Shrimp, boiled|99|21|0|1.1;Egg, boiled|155|12.6|1.1|10.6;Egg, fried|196|13.6|0.8|14.8;White rice, raw|365|7.1|79.9|0.7;White rice, cooked|130|2.7|28.2|0.3;Brown rice, cooked|123|2.7|25.6|1;Pasta, dry|371|13|74.7|1.5;Pasta, cooked|158|5.8|30.9|0.9;Potato, raw|77|2|17.5|0.1;Potato, boiled|87|1.9|20.1|0.1;Potato, baked|93|2.5|21.6|0.1;French fries|312|3.4|41.4|14.7;Sweet potato, baked|90|2|20.7|0.2;Oats, dry|389|16.9|66.3|6.9;White bread|265|9|49|3.2;Whole wheat bread|247|13|41.3|4.2;Pita bread|275|9.1|55.7|1.2;Lettuce|15|1.4|2.9|0.2;Tomato|18|0.9|3.9|0.2;Cucumber|15|0.7|3.6|0.1;Carrot|41|0.9|9.6|0.2;Broccoli, boiled|35|2.4|7.2|0.4;Milk, whole|61|3.2|4.8|3.3;Greek yogurt 0%|59|10.2|3.6|0.4;Labneh|134|7|4|10;Feta cheese|264|14.2|4|21.3;Cheddar cheese|403|25|1.3|33.3;Olive oil|884|0|0|100;Butter|717|0.9|0.1|81.1;Mayonnaise|680|1|0.6|75;Light mayonnaise|337|1|13.3|31.4;Tahini|595|17|21.2|53.8;Peanut butter|588|25.1|20.1|50.4;Banana|89|1.1|22.8|0.3;Apple|52|0.3|13.8|0.2;Orange|47|0.9|11.8|0.1;Dates, dried|282|2.5|75|0.4;Chickpeas, cooked|164|8.9|27.4|2.6;Lentils, cooked|116|9|20.1|0.4;Fava beans (canned)|90|5.5|12|2.7';
 const BUILT=FOODS.split(';').map(s=>{const a=s.split('|');return{n:a[0],b:'USDA',k:+a[1],p:+a[2],c:+a[3],f:+a[4]}});
+const CALC_FOODS={
+  protein:[
+    {id:'chicken_breast',name:'صدر دجاج',states:{'نيء':[110,23.1,0,1.2],'مسلوق':[150,26.5,0,3.6],'مشوي':[165,31.0,0,3.6],'مقلي':[219,24.7,1.3,12.4],'بالفرن':[162,30.0,0,3.5]}},
+    {id:'chicken_thigh',name:'فخذ دجاج',states:{'نيء':[177,17.0,0,12.0],'مسلوق':[218,21.5,0,14.2],'مشوي':[209,24.9,0,12.4],'مقلي':[246,23.0,2.0,16.0]}},
+    {id:'beef_lean',name:'لحم بقري خفيف',states:{'نيء':[143,21.4,0,5.9],'مشوي':[215,26.1,0,11.8],'مقلي':[225,25.9,0,13.5]}},
+    {id:'beef_ground',name:'لحم مفروم',states:{'نيء':[254,17.2,0,20.0],'مشوي':[283,25.9,0,19.5]}},
+    {id:'tuna_water',name:'تونة علبة بالماء',states:{'معلبة':[116,25.5,0,0.8]}},
+    {id:'tuna_oil',name:'تونة علبة بالزيت',states:{'معلبة':[198,27.5,0,9.2]}},
+    {id:'tuna_raw',name:'تونة طازجة',states:{'نيء':[108,23.3,0,0.5],'مشوي':[184,29.9,0,6.3],'بالفرن':[180,29.5,0,6.0]}},
+    {id:'salmon',name:'سمك سلمون',states:{'نيء':[142,19.8,0,6.3],'مشوي':[206,27.4,0,9.9],'بالفرن':[198,27.0,0,9.0],'مسلوق':[175,24.2,0,8.1]}},
+    {id:'shrimp',name:'جمبري',states:{'نيء':[85,18.1,0.9,0.5],'مسلوق':[99,21.0,0,1.1],'مشوي':[105,20.9,0.9,1.7]}},
+    {id:'egg_whole',name:'بيضة كاملة',states:{'نيء':[143,12.6,0.7,9.5],'مسلوقة':[155,12.6,1.1,10.6],'مقلية':[196,13.6,0.8,14.8]}},
+    {id:'egg_white',name:'بياض البيضة',states:{'نيء':[52,10.9,0.7,0.2],'مسلوق':[52,10.9,0.7,0.2]}},
+  ],
+  starch:[
+    {id:'rice_white',name:'أرز أبيض',states:{'نيء':[365,7.1,79.9,0.7],'مسلوق':[130,2.7,28.2,0.3]}},
+    {id:'rice_brown',name:'أرز بني',states:{'نيء':[367,7.9,76.9,2.9],'مسلوق':[123,2.7,25.6,1.0]}},
+    {id:'pasta',name:'مكرونة / باستا',states:{'نيء (جافة)':[371,13.0,74.7,1.5],'مسلوقة':[158,5.8,30.9,0.9]}},
+    {id:'potato',name:'بطاطس',states:{'نيء':[77,2.0,17.5,0.1],'مسلوق':[87,1.9,20.1,0.1],'بالفرن':[93,2.5,21.6,0.1],'مقلي':[312,3.4,41.4,14.7]}},
+    {id:'sweet_potato',name:'بطاطس حلوة',states:{'نيء':[86,1.6,20.1,0.1],'مسلوق':[76,1.4,17.7,0.1],'بالفرن':[90,2.0,20.7,0.2]}},
+    {id:'oats',name:'شوفان جاف',states:{'جاف':[389,16.9,66.3,6.9]}},
+    {id:'bread_white',name:'خبز أبيض',states:{'عادي':[265,9.0,49.0,3.2]}},
+    {id:'bread_whole',name:'خبز أسمر كامل الحبوب',states:{'عادي':[247,13.0,41.3,4.2]}},
+    {id:'pita',name:'خبز عربي پيتا',states:{'عادي':[275,9.1,55.7,1.2]}},
+  ],
+  veg:[
+    {id:'lettuce',name:'خس',states:{'نيء':[15,1.4,2.9,0.2]}},
+    {id:'tomato',name:'طماطم',states:{'نيء':[18,0.9,3.9,0.2]}},
+    {id:'cucumber',name:'خيار',states:{'نيء':[15,0.7,3.6,0.1]}},
+    {id:'carrot',name:'جزر',states:{'نيء':[41,0.9,9.6,0.2],'مسلوق':[35,0.8,8.2,0.2]}},
+    {id:'bell_pepper',name:'فلفل حلو',states:{'نيء':[31,1.0,6.0,0.3]}},
+    {id:'onion',name:'بصل',states:{'نيء':[40,1.1,9.3,0.1],'مطبوخ':[44,1.4,10.2,0.1]}},
+    {id:'spinach',name:'سبانخ',states:{'نيء':[23,2.9,3.6,0.4],'مسلوق':[23,3.0,3.8,0.3]}},
+    {id:'broccoli',name:'بروكلي',states:{'نيء':[34,2.8,6.6,0.4],'مسلوق':[35,2.4,7.2,0.4]}},
+    {id:'zucchini',name:'كوسا',states:{'نيء':[17,1.2,3.1,0.3],'مسلوق':[16,1.0,3.5,0.1]}},
+    {id:'mushroom',name:'فطر',states:{'نيء':[22,3.1,3.3,0.3],'مطبوخ':[28,1.9,5.3,0.5]}},
+    {id:'garlic',name:'ثوم',states:{'نيء':[149,6.4,33.1,0.5]}},
+    {id:'corn',name:'ذرة',states:{'نيء':[86,3.2,19.0,1.2],'مسلوق':[96,3.4,21.0,1.5]}},
+  ],
+  dairy:[
+    {id:'milk_whole',name:'حليب كامل الدسم',states:{'سائل':[61,3.2,4.8,3.3]}},
+    {id:'milk_skim',name:'حليب خالي الدسم',states:{'سائل':[35,3.4,5.0,0.2]}},
+    {id:'yogurt',name:'زبادي عادي',states:{'عادي':[61,3.5,4.7,3.3]}},
+    {id:'greek_full',name:'زبادي يوناني كامل الدسم',states:{'عادي':[97,9.0,3.6,5.0]}},
+    {id:'greek_fat',name:'زبادي يوناني خالي الدسم',states:{'عادي':[59,10.2,3.6,0.4]}},
+    {id:'labneh',name:'لبنة',states:{'عادية':[134,7.0,4.0,10.0]}},
+    {id:'cheddar',name:'جبن شيدر',states:{'عادي':[403,25.0,1.3,33.3]}},
+    {id:'mozzarella',name:'جبن موزاريلا',states:{'عادي':[280,18.0,2.2,22.0]}},
+    {id:'feta',name:'جبن فيتا',states:{'عادي':[264,14.2,4.0,21.3]}},
+    {id:'cottage',name:'جبن قريش كوتاج',states:{'عادي':[98,11.1,3.4,4.3]}},
+  ],
+  fat:[
+    {id:'olive_oil',name:'زيت زيتون',states:{'سائل':[884,0,0,100]}},
+    {id:'veg_oil',name:'زيت نباتي',states:{'سائل':[884,0,0,100]}},
+    {id:'butter',name:'زبدة',states:{'عادية':[717,0.9,0.1,81.1]}},
+    {id:'mayo',name:'مايونيز عادي',states:{'عادي':[680,1.0,0.6,75.0]}},
+    {id:'mayo_light',name:'مايونيز لايت',states:{'عادي':[337,1.0,13.3,31.4]}},
+    {id:'tahini',name:'طحينة',states:{'عادية':[595,17.0,21.2,53.8]}},
+    {id:'peanut_butter',name:'زبدة الفول السوداني',states:{'عادية':[588,25.1,20.1,50.4]}},
+  ],
+  fruit:[
+    {id:'banana',name:'موز',states:{'طازج':[89,1.1,22.8,0.3]}},
+    {id:'apple',name:'تفاح',states:{'طازج':[52,0.3,13.8,0.2]}},
+    {id:'orange',name:'برتقال',states:{'طازج':[47,0.9,11.8,0.1]}},
+    {id:'dates',name:'تمر مجفف',states:{'جاف':[282,2.5,75.0,0.4]}},
+    {id:'watermelon',name:'بطيخ',states:{'طازج':[30,0.6,7.6,0.2]}},
+    {id:'strawberry',name:'فراولة',states:{'طازجة':[32,0.7,7.7,0.3]}},
+    {id:'mango',name:'مانجو',states:{'طازج':[60,0.8,15.0,0.4]}},
+    {id:'grapes',name:'عنب',states:{'طازج':[69,0.7,18.1,0.2]}},
+  ],
+  legume:[
+    {id:'chickpea_dry',name:'حمص جاف',states:{'نيء':[364,19.3,60.7,6.0]}},
+    {id:'chickpea_cooked',name:'حمص مسلوق',states:{'مسلوق':[164,8.9,27.4,2.6]}},
+    {id:'chickpea_can',name:'حمص معلب مصفى',states:{'معلب':[139,7.5,23.1,2.2]}},
+    {id:'lentil_dry',name:'عدس جاف',states:{'نيء':[353,25.8,60.0,1.1]}},
+    {id:'lentil_cooked',name:'عدس مسلوق',states:{'مسلوق':[116,9.0,20.1,0.4]}},
+    {id:'foul',name:'فول مدمس معلب',states:{'معلب':[90,5.5,12.0,2.7]}},
+    {id:'beans_can',name:'فاصوليا معلبة',states:{'معلبة':[130,8.6,23.7,0.5]}},
+  ]
+};
 const goal=()=>S.calorieGoal||0;
 function tween(el,to,suf=''){const from=parseFloat(el.dataset.v||0);el.dataset.v=to;const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/800),e=1-Math.pow(1-k,3);el.textContent=Math.round(from+(to-from)*e)+suf;if(k<1)requestAnimationFrame(f)})(t0)}
 function render(){const now=new Date(),h=now.getHours();$('#hi').textContent=h<12?'Good morning':h<18?'Good afternoon':'Good evening';
@@ -97,9 +180,9 @@ $('#goal').textContent=G?G+' kcal ✎':'Set goal ✎';requestAnimationFrame(()=>
 $('#list').innerHTML=E.length?E.map((e,i)=>`<div class="row" style="animation-delay:${i*.06}s"><div><b>${esc(e.name)}</b><small>${e.time||''} · P ${r1(e.protein)} · C ${r1(e.carbs)} · F ${r1(e.fat)}</small></div><em>${Math.round(e.calories)}</em><button class="x" data-r="${e.id}">✕</button></div>`).join(''):'<div class="empty">Nothing logged yet.<br>Tap + to add your first meal.</div>'}
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function open(on){if(!on)go('home')}
-function tab(t){$$('.tb').forEach(b=>b.classList.toggle('on',b.dataset.t===t));$('#ps').hidden=t!=='s'||!!pick;$('#pc').hidden=t!=='c';$('#pd').hidden=t!=='s'||!pick}
+function tab(t){$$('.tb').forEach(b=>b.classList.toggle('on',b.dataset.t===t));$('#pk').hidden=t!=='k';$('#ps').hidden=t!=='s'||!!pick;$('#pc').hidden=t!=='c';$('#pd').hidden=t!=='s'||!pick}
 function bld(){$('#bd').hidden=!meal.length;$('#bl').innerHTML=meal.map((m,i)=>`<div class="row"><div><b>${esc(m.n)}${m.g?' · '+m.g+'g':''}</b><small>P ${r1(m.p)} · C ${r1(m.c)} · F ${r1(m.f)}</small></div><em>${Math.round(m.k)}</em><button class="x" data-m="${i}">✕</button></div>`).join('');
-const T=meal.reduce((a,m)=>({k:a.k+m.k,p:a.p+m.p,c:a.c+m.c,f:a.f+m.f}),{k:0,p:0,c:0,f:0});$('#tk').textContent=Math.round(T.k);$('#tp').textContent=r1(T.p);$('#tc').textContent=r1(T.c);$('#tf').textContent=r1(T.f)}
+const T=meal.reduce((a,m)=>({k:a.k+m.k,p:a.p+m.p,c:a.c+m.c,f:a.f+m.f}),{k:0,p:0,c:0,f:0});$('#tk').textContent=Math.round(T.k);$('#tp').textContent=r1(T.p);$('#tc').textContent=r1(T.c);$('#tf').textContent=r1(T.f);sum()}
 function list(a,keep){R=a;$('#rs').innerHTML=a.map((x,i)=>`<button class="res" style="animation-delay:${i*.03}s" data-i="${i}"><div><b>${esc(x.n)}</b><small>${esc(x.b||'')} · P ${r1(x.p)} C ${r1(x.c)} F ${r1(x.f)} /100g</small></div><em>${Math.round(x.k)}</em></button>`).join('')+(keep||'')}
 const loc=q=>{q=q.toLowerCase();return[...get('calc-saved-items',[]).map(s=>({n:s.name,b:'Saved',tot:1,k:s.cal,p:s.pro,c:s.carb,f:s.fat})),...get('off_cache',[]),...BUILT].filter(x=>x.n.toLowerCase().includes(q)).slice(0,10)};
 async function off(q,eg){const r=await fetch('https://world.openfoodfacts.org/cgi/search.pl?search_simple=1&action=process&json=1&page_size=15&fields=product_name,brands,nutriments&search_terms='+encodeURIComponent(q)+(eg?'&tagtype_0=countries&tag_contains_0=contains&tag_0=egypt':''));const j=await r.json();
@@ -130,18 +213,32 @@ $('#ex').onclick=()=>{const o={};for(let i=0;i<localStorage.length;i++){const k=
 const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(o)],{type:'application/json'}));a.download='gym-tracker-backup-'+dk(new Date())+'.json';a.click()};
 $('#im').onclick=()=>$('#fi').click();
 $('#fi').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{const o=JSON.parse(t);Object.keys(o).forEach(k=>k.startsWith(NS)&&localStorage.setItem(k,o[k]));location.reload()}catch(x){alert('Invalid backup file')}})};
+
+const CL={protein:'🥩 Proteins',starch:'🌾 Carbs',veg:'🥗 Vegetables',dairy:'🥛 Dairy',fat:'🫙 Fats & sauces',fruit:'🍎 Fruits',legume:'🫘 Legumes'};let KF=null,KS='';
+function twd(el,to,d){const from=parseFloat(el.dataset.v||0);el.dataset.v=to;const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/500),e=1-Math.pow(1-k,3);el.textContent=(from+(to-from)*e).toFixed(d);if(k<1)requestAnimationFrame(f)})(t0)}
+function sum(){const tt=a=>a.reduce((s,e)=>({k:s.k+e.k,p:s.p+e.p,c:s.c+e.c,f:s.f+e.f}),{k:0,p:0,c:0,f:0}),t=tt(rec(dk(new Date())).entries.map(e=>({k:e.calories,p:e.protein,c:e.carbs,f:e.fat}))),M=tt(meal),G=goal(),gg=G||2000,tot=t.k+M.k;
+tween($('#zl'),Math.round(G?Math.abs(G-tot):tot));$('#zt').textContent=G?(tot>G?'kcal over your goal':'kcal left after this meal'):'kcal today (set a goal on Home)';$('#zm').textContent=M.k?'+'+Math.round(M.k)+' kcal in this meal':'';
+$('#zb').style.width=Math.min(100,tot/gg*100)+'%';$('#zcard').classList.toggle('over',!!G&&tot>G);
+[['p',t.p+M.p,gg*.3/4],['c',t.c+M.c,gg*.4/4],['f',t.f+M.f,gg*.3/9]].forEach(([x,v,m])=>{tween($('#z'+x+'v'),Math.round(v),'g');$('#z'+x).style.width=Math.min(100,v/m*100)+'%'})}
+function kpv(){const g=parseFloat($('#kw').value)||0,r=KF&&KS?KF.states[KS]:null,f=g/100;[['x1',0],['x2',1],['x3',2],['x4',3]].forEach(([id,i])=>twd($('#'+id),r?r[i==0?0:i]*f:0,i?1:0));$('#kadd').disabled=!(r&&g>0)}
+$('#kcat').innerHTML='<option value="">Category</option>'+Object.keys(CALC_FOODS).map(c=>`<option value="${c}">${CL[c]||c}</option>`).join('');
+$('#kcat').onchange=e=>{KF=null;KS='';$('#kfood').innerHTML='<option value="">Food</option>'+(CALC_FOODS[e.target.value]||[]).map((f,i)=>`<option value="${i}">${f.name}</option>`).join('');$('#kst').innerHTML='';kpv()};
+$('#kfood').onchange=e=>{KF=(CALC_FOODS[$('#kcat').value]||[])[e.target.value]||null;KS='';const s=KF?Object.keys(KF.states):[];$('#kst').innerHTML=s.map(x=>`<button class="chip" data-s="${x}">${x}</button>`).join('');if(s.length==1){KS=s[0];$('#kst').firstChild.classList.add('on')}kpv()};
+$('#kst').onclick=e=>{const b=e.target.closest('[data-s]');if(!b)return;KS=b.dataset.s;$$('#kst .chip').forEach(x=>x.classList.toggle('on',x===b));kpv()};
+$('#kw').oninput=kpv;$$('[data-w]').forEach(b=>b.onclick=()=>{$('#kw').value=b.dataset.w;kpv()});
+$('#kadd').onclick=()=>{const g=parseFloat($('#kw').value)||0,r=KF&&KS?KF.states[KS]:null;if(!r||!g)return;const f=g/100;meal.push({n:KF.name+' · '+KS,g,k:r[0]*f,p:r[1]*f,c:r[2]*f,f:r[3]*f});$('#kw').value='';kpv();bld();const b=$('#bd');b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop')};
 const NAV=['home','cal','workout','steps'];let cur='home';
 function go(n){const i=NAV.indexOf(n),j=NAV.indexOf(cur);document.documentElement.style.setProperty('--dx',(i>j?40:-40)+'px');
 if(n==='workout'||n==='steps'){const f=$(n==='workout'?'#fw':'#fs');if(!f.getAttribute('src'))f.src='classic.html?embed='+n}
 $('#pg-home').hidden=n!=='home';$('#pg-cal').hidden=n!=='cal';$('#fw').hidden=n!=='workout';$('#fs').hidden=n!=='steps';
 $$('#nv button').forEach(b=>b.classList.toggle('on',b.dataset.n===n));
-['#pg-home','#pg-cal'].forEach(s=>{const e=$(s);e.style.animation='none';e.offsetWidth;e.style.animation=''});cur=n;scrollTo(0,0);if(n==='home')render()}
+['#pg-home','#pg-cal'].forEach(s=>{const e=$(s);e.style.animation='none';e.offsetWidth;e.style.animation=''});cur=n;scrollTo(0,0);if(n==='home')render();if(n==='cal')sum()}
 $('#nv').onclick=e=>{const b=e.target.closest('button');if(b)go(b.dataset.n)};
 function sw(dx,dy){if(Math.abs(dx)<70||Math.abs(dy)>Math.abs(dx)*.7)return;const n=NAV[NAV.indexOf(cur)+(dx<0?1:-1)];if(n)go(n)}
 const hs=el=>{for(;el&&el!==document.body;el=el.parentElement){const o=getComputedStyle(el).overflowX;if((o=='auto'||o=='scroll')&&el.scrollWidth>el.clientWidth+2)return true}return false};
 let sx=0,sy=0,ig=0;addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;ig=hs(e.target)||!!e.target.closest('input,select,textarea')},{passive:true});
 addEventListener('touchend',e=>{if(ig)return;sw(e.changedTouches[0].clientX-sx,e.changedTouches[0].clientY-sy)},{passive:true});
 addEventListener('message',e=>{if(e.data&&e.data.sw)sw(e.data.dx,e.data.dy)});
-render();bld();tab('s');
+render();bld();tab('k');
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script></body></html>
